@@ -5,5 +5,6 @@ env:
   global:
     - NODE_ENV=production
 script:
+- npm install
 - npm test
 - npm run build
