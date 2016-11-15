@@ -6,5 +6,7 @@ env:
     - NODE_ENV=production
 script:
 - npm install
-- npm run travis-test
-- npm run travis-build
+- npm install webpack -global
+- npm install cross-env -global
+- npm test
+- npm run build
