@@ -1,0 +1,9 @@
+language: node_jstoxicsis@gmail.com
+node_js:
+- '6.2'
+env:
+  global:
+    - NODE_ENV=production
+script:
+- npm test
+- npm run build

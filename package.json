@@ -6,7 +6,8 @@
   "scripts": {
     "test": "cross-env NODE_ENV=test jest",
     "start": "cross-env NODE_ENV=development FAKE=true STAND_ALONE=true webpack-dev-server",
-    "build": "npm test && tslint src/**/*.ts{,x} && cross-env NODE_ENV=production webpack",
+    "build": "cross-env NODE_ENV=production webpack",
+    "lint": "tslint src/**/*.ts{,x}",
     "postinstall": "typings install"
   },
   "jest": {
