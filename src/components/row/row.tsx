@@ -79,7 +79,7 @@ export class Row extends React.Component<IRowProps, void> {
         );
     }
 
-    private onRowClick(e: React.MouseEvent) {
+    private onRowClick(e: React.MouseEvent<any>) {
         this.props.onRowClick(this.props.row);
     }
 }

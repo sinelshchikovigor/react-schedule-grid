@@ -46,7 +46,7 @@ export class Shift extends Entity {
         );
     }
 
-    onContextMenu(e: React.MouseEvent) {
+    onContextMenu(e: React.MouseEvent<any>) {
         e.preventDefault();
         this.props.onEntityContextMenu(this.props.entity);
     }

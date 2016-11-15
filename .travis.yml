@@ -1,0 +1,7 @@
+language: node_js
+node_js:
+- '6.2'
+script:
+- npm install cross-env -global
+- npm install
+- npm run build

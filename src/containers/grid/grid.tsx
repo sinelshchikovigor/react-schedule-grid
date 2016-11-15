@@ -46,7 +46,7 @@ export class GridComponent extends React.Component<IGridProps, void> {
 
         if (this.props.groups) {
             this.props.groups.forEach((group: GroupModel, index: number) => {
-                rows = rows.concat(group.rows);
+                rows = rows.concat(group.rows) as List<RowModel>;
             });
 
             let visibleRows: List<RowModel> = rows.filter((row: RowModel, index: number) => {
@@ -57,7 +57,7 @@ export class GridComponent extends React.Component<IGridProps, void> {
                 let fitsBottom: boolean = rowPosition <= (virstualScroll + (ENTITY_HEIGHT * VIRTUAL_SCROLL_BOTTOM_BUFFER_COUNT + SCHEDULER_HEIGHT));
 
                 return fitsBottom && fitsTop;
-            });
+            }) as List<RowModel>;
 
             groups = this.props.groups.map((group: GroupModel, index: number) => {
                 return (
