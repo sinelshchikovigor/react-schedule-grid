@@ -6,5 +6,5 @@ env:
     - NODE_ENV=production
 script:
 - npm install
-- npm test
-- npm run build
+- npm run travis-test
+- npm run travis-build
