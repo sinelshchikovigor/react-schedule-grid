@@ -1,0 +1,6 @@
+**/node_modules/**/*
+**/typings/**/*
+!**/typings/custom.d.ts
+build/*
+.awcache
+.idea

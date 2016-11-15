@@ -1,0 +1,74 @@
+@import '../../variables.less';
+
+@sort-asc-img-url: url('../../../assets/images/sort-asc.gif');
+@sort-desc-img-url: url('../../../assets/images/sort-desc.gif');
+
+.aside {
+    height: 100%;
+    position: absolute;
+    display: inline-block;
+    z-index: 3;
+
+    &__title {
+        height: 25px;
+        border-bottom: 0px;
+        padding-top: 5px;
+        box-sizing: border-box;
+        text-align: center;
+        padding-right: 0px;
+        padding-left: 0px;
+        font: 12pt 'Roboto', sans-serif;
+        font-weight: bold;
+    }
+
+    &__header {
+        height: 35px;
+        padding-top: 13px;
+        font-size: 11px;
+        width: 100%;
+        display: inline-block;
+        text-align: center;
+        padding: 10px;
+        font-weight: bold;
+        box-sizing: border-box;
+        cursor: pointer;
+
+        &-text {
+            &-sort {
+                padding-right: 12px;
+                background-position: right center;
+                background-repeat: no-repeat;
+                &-asc {
+                    background-image: @sort-asc-img-url;
+                }
+
+                &-desc {
+                    background-image: @sort-desc-img-url;
+                }
+            }
+        }
+    }
+
+    &__wrapper {
+        height: calc(~'100% - 60px');
+        width: 105%;
+        overflow-y: hidden;
+        overflow-x: scroll;
+    }
+    
+    .table {
+        list-style: none;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        font-size: 1.2rem;
+        will-change: transform;
+        transform: translateZ(0);
+    }
+
+    &__row {
+        border-bottom: 1px solid @custom-grey;
+        border-right: 1px solid @custom-grey;
+    }
+}
+

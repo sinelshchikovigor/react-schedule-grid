@@ -1,0 +1,25 @@
+{
+    "compileOnSave": true,
+    "compilerOptions": {
+        "module": "commonjs",
+        "noImplicitAny": false,
+        "noEmitOnError": true,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "jsx": "react",
+        "outDir": "./build",
+        "lib": [
+            "dom",
+            "es2015",
+            "es2016",
+            "es2017",
+            "es6",
+            "es7"
+        ],
+        "noUnusedLocals": true,
+        "noFallthroughCasesInSwitch": true
+    },
+    "exclude": [
+        "node_modules"
+    ]
+}

@@ -1,0 +1,18 @@
+{
+  "name": "react-scheduler",
+  "dependencies": {},
+  "globalDependencies": {
+    "classnames": "registry:dt/classnames#0.0.0+20160316155526",
+    "ejs": "registry:dt/ejs#0.0.0+20160317120654",
+    "enzyme": "registry:dt/enzyme#2.4.1+20160919072335",
+    "immutable": "registry:dt/immutable#3.8.1+20160608070634",
+    "jest": "registry:dt/jest#0.9.0+20160914121351",
+    "node": "registry:env/node#6.0.0+20160622202520",
+    "react": "registry:dt/react#0.14.0+20160927082313",
+    "react-addons-perf": "registry:dt/react-addons-perf#15.1.0+20160619031933",
+    "react-addons-test-utils": "registry:dt/react-addons-test-utils#0.14.0+20160427035638",
+    "react-dom": "registry:dt/react-dom#0.14.0+20160412154040",
+    "react-redux": "registry:dt/react-redux#4.4.0+20160908183346",
+    "redux": "registry:dt/redux#3.5.2+20160703092728"
+  }
+}
