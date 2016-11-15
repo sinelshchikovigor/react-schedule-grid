@@ -5,8 +5,6 @@ env:
   global:
     - NODE_ENV=production
 script:
-- npm install
-- npm install webpack -global
 - npm install cross-env -global
-- npm test
+- npm install
 - npm run build
