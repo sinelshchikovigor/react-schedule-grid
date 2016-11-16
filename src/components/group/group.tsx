@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { List } from 'immutable';
 
-import { RowModel, GroupModel, TimelineModel } from '../../model';
+import { RowModel, GroupModel, TimelineModel, SubjectModel, EntityModel } from '../../model';
 import { Row } from '../../components';
 
 interface IGroupProps {
@@ -15,9 +15,29 @@ interface IGroupProps {
 export class Group extends React.Component<IGroupProps, void> {
     public render() {
         let rows: List<JSX.Element> = this.props.isAsideGroup ? this.getAsideGroupTemplate() : this.getGridGroupTemplate();
+        
+        let groupSubject: SubjectModel = new SubjectModel(
+            this.props.group.id,
+            this.props.group.title
+        );
+
+        let groupRow: RowModel = new RowModel(
+            groupSubject,
+            List<EntityModel>([]),
+            false
+        );
+
+        let group = <Row key={groupRow.subject.id}
+            row={groupRow}
+            onRowClick={(row: RowModel) => this.props.onRowClick(row)}
+            isAsideRow={true}
+            timeline={this.props.timeline}
+            isEntitiesVisible={true}
+            isTabularView={false} />
 
         return (
             <div>
+                {group}
                 {rows}
             </div>
         );
