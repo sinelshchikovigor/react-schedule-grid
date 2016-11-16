@@ -8,14 +8,22 @@ interface IGroupProps {
     group: GroupModel;
     visibleRows?: List<RowModel>;
     timeline?: TimelineModel;
-    onRowClick: (row: RowModel) => any;
     isAsideGroup: boolean;
+    onGroupClick: (group: GroupModel) => void
 }
 
 export class Group extends React.Component<IGroupProps, void> {
     public render() {
-        let rows: List<JSX.Element> = this.props.isAsideGroup ? this.getAsideGroupTemplate() : this.getGridGroupTemplate();
-        
+        let rows: List<JSX.Element>;
+
+        if (this.props.group.isCollapsed) {
+            if (this.props.isAsideGroup) {
+                rows = this.getAsideGroupTemplate()
+            } else {
+                rows = this.getGridGroupTemplate()
+            }
+        }
+
         let groupSubject: SubjectModel = new SubjectModel(
             this.props.group.id,
             this.props.group.title
@@ -29,11 +37,12 @@ export class Group extends React.Component<IGroupProps, void> {
 
         let group = <Row key={groupRow.subject.id}
             row={groupRow}
-            onRowClick={(row: RowModel) => this.props.onRowClick(row)}
-            isAsideRow={true}
+            onRowClick={(row: RowModel) => this.props.onGroupClick(this.props.group)}
+            isAsideRow={this.props.isAsideGroup}
             timeline={this.props.timeline}
             isEntitiesVisible={true}
-            isTabularView={false} />
+            isTabularView={false}
+            isGroupRow={true} />
 
         return (
             <div>
@@ -48,11 +57,12 @@ export class Group extends React.Component<IGroupProps, void> {
             return (
                 <Row key={index}
                     row={row}
-                    onRowClick={(row: RowModel) => this.props.onRowClick(row)}
+                    onRowClick={(row: RowModel) => this.props.onGroupClick(this.props.group)}
                     isAsideRow={true}
                     timeline={this.props.timeline}
                     isEntitiesVisible={true}
-                    isTabularView={false} />
+                    isTabularView={false}
+                    isGroupRow={true} />
             );
         }) as List<JSX.Element>;
     }
@@ -64,11 +74,12 @@ export class Group extends React.Component<IGroupProps, void> {
             return (
                 <Row key={index}
                     row={row}
-                    onRowClick={(row: RowModel) => this.props.onRowClick(row)}
+                    onRowClick={(row: RowModel) => { } }
                     isAsideRow={false}
                     timeline={this.props.timeline}
                     isEntitiesVisible={isEntitiesVisible}
-                    isTabularView={false} />
+                    isTabularView={false}
+                    isGroupRow={true} />
             );
 
         }) as List<JSX.Element>;

@@ -64,7 +64,7 @@ export class GridComponent extends React.Component<IGridProps, void> {
                     <Group key={index}
                         group={group}
                         isAsideGroup={false}
-                        onRowClick={(row: RowModel) => this.onRowClick(row)}
+                        onGroupClick={(group: GroupModel) => { } }
                         timeline={this.props.timeline}
                         visibleRows={visibleRows} />
                 );
@@ -99,14 +99,6 @@ export class GridComponent extends React.Component<IGridProps, void> {
         $days.scrollLeft = scrollLeft;
 
         synchronizeScrollPositions(scrollTop, scrollLeft);
-    }
-
-    private onRowClick = (row: RowModel) => {
-        let selection = List<RowModel>([
-            row
-        ]);
-
-        SchedulerState.dispatch(SchedulerActions.selectionChange(selection));
     }
 }
 

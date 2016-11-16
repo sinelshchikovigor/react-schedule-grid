@@ -44,7 +44,8 @@ export class ConverterService {
             new GroupModel(
                 -1,
                 'Default group',
-                rows
+                rows,
+                true
             )
         ]);
 

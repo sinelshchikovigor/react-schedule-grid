@@ -147,6 +147,24 @@ const SchedulerStateReducer = (state: any = initialState, action) => {
             return Object.assign({}, state, {
                 virtualScroll: action.data
             });
+
+        case SchedulerActionsConstants[SchedulerActionsConstants.GROUPS_UPDATED]:
+            // TODO: Replace with set
+            const groups: List<GroupModel> = state.groups.map((group: GroupModel) => {
+                var result = group;
+
+                action.data.forEach((updatedGroup: GroupModel) => {
+                    if (group.id === updatedGroup.id) {
+                        return result = updatedGroup;
+                    }
+                });
+
+                return result;
+            })
+
+            return Object.assign({}, state, {
+                groups: groups
+            });
         default:
             return state;
     }

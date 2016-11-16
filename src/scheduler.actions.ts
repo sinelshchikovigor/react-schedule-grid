@@ -16,7 +16,8 @@ export enum SchedulerActionsConstants {
     'ENTITY_DOUBLE_CLICK',
     'ENTITY_CONTEXT_MENU',
     'SELECTION_CHANGE',
-    'VIRTUAL_SCROLL_CHANGED'
+    'VIRTUAL_SCROLL_CHANGED',
+    'GROUPS_UPDATED'
 }
 
 type IData = {
@@ -119,5 +120,12 @@ export abstract class SchedulerActions {
             data: data
         };
     };
+
+    public static groupsUpdated = (data: List<GroupModel>) => {
+        return {
+            type: SchedulerActionsConstants[SchedulerActionsConstants.GROUPS_UPDATED],
+            data: data
+        };
+    }
 }
 
