@@ -3,9 +3,9 @@ import { List } from 'immutable';
 import { connect } from 'react-redux';
 import * as classNames from 'classnames';
 
-import { RowModel, GroupModel } from '../../model';
-import { ISchedulerState, SortOrder } from '../../scheduler.state';
-import { SchedulerActions }  from '../../scheduler.actions';
+import { GroupModel } from '../../model';
+import { ISchedulerState, SortOrder, SchedulerState } from '../../scheduler.state';
+import { SchedulerActions } from '../../scheduler.actions';
 import { Group } from '../../components';
 
 interface IAsideProps {
@@ -26,7 +26,7 @@ class AsideComponent extends React.Component<IAsideProps, void> {
                     <Group key={index}
                         group={group}
                         isAsideGroup={true}
-                        onRowClick={(row: RowModel) => this.onRowClick(row)} />
+                        onGroupClick={(group: GroupModel) => this.onGroupClick(group)} />
                 );
             }) as List<JSX.Element>;
         }
@@ -57,7 +57,20 @@ class AsideComponent extends React.Component<IAsideProps, void> {
         );
     }
 
-    private onRowClick(row: RowModel) { }
+    private onGroupClick(group: GroupModel) {
+        const newGroup = new GroupModel(
+            group.id,
+            group.title,
+            group.rows,
+            !group.isCollapsed
+        );
+
+        const groups: List<GroupModel> = List<GroupModel>([newGroup]);
+
+        SchedulerState.dispatch(
+            SchedulerActions.groupsUpdated(groups)
+        );
+    }
 }
 
 const mapStateToProps = (state: ISchedulerState) => {

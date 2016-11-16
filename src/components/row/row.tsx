@@ -16,6 +16,7 @@ interface IRowProps {
     onRowClick: (row: RowModel) => any;
     isAsideRow: boolean;
     isEntitiesVisible: boolean;
+    isGroupRow: boolean;
 }
 
 export class Row extends React.Component<IRowProps, void> {
@@ -28,10 +29,35 @@ export class Row extends React.Component<IRowProps, void> {
     }
 
     public render() {
-        return this.props.isAsideRow ? this.getAsideRowTemplate() : this.getGridRowTemplate();
+        let result: JSX.Element;
+
+        if (this.props.isAsideRow) {
+            if (this.props.isGroupRow) {
+                result = this.getAsideGroupTemplate();
+            } else {
+                result = this.getAsideRowTemplate();
+            }
+        } else {
+            result = this.getGridRowTemplate();
+        }
+
+        return result;
     }
 
     private getAsideRowTemplate(): JSX.Element {
+        let className = classnames({
+            'aside__row': true,
+            'aside__row--selected': this.props.row.isSelected
+        });
+
+        return (
+            <li onClick={this.onRowClick.bind(this)} className={className}>
+                {this.props.row.subject.name}
+            </li>
+        );
+    }
+
+    private getAsideGroupTemplate(): JSX.Element {
         let className = classnames({
             'aside__row': true,
             'aside__row--selected': this.props.row.isSelected
@@ -53,7 +79,7 @@ export class Row extends React.Component<IRowProps, void> {
                 return TimelineService.isEntityInPeriod(entity, timeline);
             }) as List<EntityModel>;
 
-             entities = periodEntities.map((entity) => {
+            entities = periodEntities.map((entity) => {
                 let geometry = TimelineService.calculateEntityGeometry(entity, this.props.isTabularView, timeline);
 
                 return <Shift key={entity.id}

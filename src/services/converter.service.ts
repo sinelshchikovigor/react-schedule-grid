@@ -39,9 +39,14 @@ export class ConverterService {
             rows = rows.push(row);
         });
 
-        // Test group
+        // TODO: Remove test group
         let groups: List<GroupModel> = List<GroupModel>([
-            new GroupModel(rows)
+            new GroupModel(
+                -1,
+                'Default group',
+                rows,
+                true
+            )
         ]);
 
         return groups;
