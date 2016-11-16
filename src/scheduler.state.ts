@@ -2,7 +2,7 @@ import { createStore, combineReducers } from 'redux';
 import { List } from 'immutable';
 
 import { SchedulerActionsConstants } from './scheduler.actions';
-import { SubjectModel, EntityModel, ColumnModel, GroupModel, TimelineModel } from './model';
+import { SubjectModel, EntityModel, GroupModel, TimelineModel } from './model';
 import { IScheduleListeners } from './scheduler.wrapper';
 import { AsideState, IAsideState, GridState, IGridState, TimelineState } from './containers';
 
@@ -20,7 +20,6 @@ export interface ISchedulerState {
         groups?: List<GroupModel>;
         subjects?: List<SubjectModel>;
         entities?: List<EntityModel>;
-        columns?: List<ColumnModel>;
         scrollTop?: number;
         schedulerWidth?: number;
         isTabularView?: boolean;
@@ -38,7 +37,6 @@ const initialState = {
     groups: List<GroupModel>([]),
     subjects: List<SubjectModel>([]),
     entities: List<EntityModel>([]),
-    columns: List<ColumnModel>([]),
     isTabularView: false,
     schedulerWidth: 700,
     listeners: []

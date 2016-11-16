@@ -39,7 +39,7 @@ export class Row extends React.Component<IRowProps, void> {
 
         return (
             <li onClick={this.onRowClick.bind(this)} className={className}>
-                {this.props.row.subject.title}
+                {this.props.row.subject.name}
             </li>
         );
     }

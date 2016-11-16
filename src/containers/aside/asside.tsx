@@ -3,14 +3,13 @@ import { List } from 'immutable';
 import { connect } from 'react-redux';
 import * as classNames from 'classnames';
 
-import { RowModel, ColumnModel, GroupModel } from '../../model';
+import { RowModel, GroupModel } from '../../model';
 import { ISchedulerState, SortOrder } from '../../scheduler.state';
 import { SchedulerActions }  from '../../scheduler.actions';
 import { Group } from '../../components';
 
 interface IAsideProps {
     groups: List<GroupModel>;
-    columns: List<ColumnModel>;
     scrollPosition: number;
     width: number;
     sortOrder: SortOrder;
@@ -64,7 +63,6 @@ class AsideComponent extends React.Component<IAsideProps, void> {
 const mapStateToProps = (state: ISchedulerState) => {
     return {
         scrollPosition: state.scheduler.scrollTop,
-        columns: state.scheduler.columns,
         groups: state.scheduler.groups,
         width: state.aside.asideWidth,
         sortOrder: state.scheduler.sortOrder
