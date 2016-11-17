@@ -4,7 +4,6 @@ import { Aside, Grid, Timeline } from './containers';
 import { SchedulerState, ISchedulerState } from './scheduler.state';
 import { SchedulerActions } from './scheduler.actions';
 import { TimelineService } from './services/timeline.service';
-import { DateTimeService } from './services/datetime.service';
 
 export class Scheduler extends React.Component<void, void> {
     private ref: HTMLElement;
@@ -19,17 +18,9 @@ export class Scheduler extends React.Component<void, void> {
     public componentDidMount() {
         let rect: ClientRect = this.ref.getBoundingClientRect();
         let state: ISchedulerState = SchedulerState.getState();
-        let startDate: Date = new Date();
-        let endDate: Date = new Date();
+        let startDate: Date = state.timeline.startDate || new Date();
+        let endDate: Date = state.timeline.endDate || new Date();
         let gridWidth: number = rect.width - state.aside.asideWidth;
-
-        if (process.env.loadFakeData) {
-            startDate = new Date(2016, 9, 1);
-            endDate = DateTimeService.addSeconds(new Date(2016, 9, 15), -1);
-        } else {
-            startDate = new Date();
-            endDate = new Date();
-        }
 
         SchedulerState.dispatch(SchedulerActions.schedulerWidthChanged(
             rect.width,

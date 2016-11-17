@@ -9,16 +9,6 @@ import { SubjectModel, EntityModel, RowModel, TimelineModel, GroupModel } from '
 import { ConverterService, TimelineService } from './services';
 import { SchedulerActions } from './scheduler.actions';
 import { TimelineActions } from './containers/timeline/timeline.actions';
-import { subjects, entities } from './mock.data';
-
-let editorContent;
-
-if (process.env.loadFakeData) {
-    editorContent = {
-        subjects,
-        entities
-    };
-}
 
 export interface IScheduleListeners {
     onEntityDoubleClick?: (entity: EntityModel) => void;
@@ -32,18 +22,15 @@ export class SchedulerWrapper {
         let listeners: IScheduleListeners = config && config.listeners;
         listeners = listeners || {};
 
-        SchedulerState.dispatch(SchedulerActions.listenersInitialized(listeners));
+        SchedulerState.dispatch(
+            SchedulerActions.listenersInitialized(listeners)
+        );
 
         ReactDOM.render((
             <Provider store={SchedulerState}>
                 <Scheduler />
             </Provider>
         ), document.getElementById(elementId));
-
-        if (process.env.loadFakeData) {
-            SchedulerWrapper.setDateRange(new Date(2016, 9, 1), new Date(2016, 9, 15));
-            SchedulerWrapper.loadData(editorContent);
-        }
     }
 
     static loadData(content: any) {
@@ -161,9 +148,4 @@ if (!Object.assign) {
             return to;
         }
     });
-}
-
-(window as any).SchedulerWrapper = SchedulerWrapper;
-if (process.env.standAlone) {
-    SchedulerWrapper.initialize('app');
 }
