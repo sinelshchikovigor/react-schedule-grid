@@ -149,21 +149,20 @@ const SchedulerStateReducer = (state: any = initialState, action) => {
             });
 
         case SchedulerActionsConstants[SchedulerActionsConstants.GROUPS_UPDATED]:
-            // TODO: Replace with set
-            const groups: List<GroupModel> = state.groups.map((group: GroupModel) => {
-                var result = group;
 
+            let groups: List<GroupModel> = state.groups;
+            let newGroups: List<GroupModel>;
+
+            groups.forEach((group: GroupModel, key: number, groups: List<GroupModel>) => {
                 action.data.forEach((updatedGroup: GroupModel) => {
                     if (group.id === updatedGroup.id) {
-                        return result = updatedGroup;
+                        newGroups = groups.set(key, updatedGroup);
                     }
                 });
-
-                return result;
-            })
+            });
 
             return Object.assign({}, state, {
-                groups: groups
+                groups: newGroups
             });
         default:
             return state;
