@@ -57,7 +57,7 @@ export class Group extends React.Component<IGroupProps, void> {
             return (
                 <Row key={index}
                     row={row}
-                    onRowClick={(row: RowModel) => this.props.onGroupClick(this.props.group)}
+                    onRowClick={(row: RowModel) => { } }
                     isAsideRow={true}
                     timeline={this.props.timeline}
                     isEntitiesVisible={true}
