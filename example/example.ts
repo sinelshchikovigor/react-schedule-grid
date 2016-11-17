@@ -1,4 +1,4 @@
-import { subjects, entities } from '../src/mock.data';
+import { subjects, entities } from './mock.data';
 import { SchedulerWrapper } from '../src/scheduler.wrapper';
 
 const editorContent = {
