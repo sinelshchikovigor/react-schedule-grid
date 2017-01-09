@@ -6,6 +6,7 @@
   "scripts": {
     "test": "cross-env NODE_ENV=test jest",
     "start": "cross-env NODE_ENV=development webpack-dev-server",
+    "start-prod": "cross-env NODE_ENV=production webpack-dev-server",
     "build": "cross-env NODE_ENV=production webpack",
     "lint": "tslint src/**/*.ts{,x}",
     "travis-build": "webpack",
